@@ -184,3 +184,22 @@
   </footer>
 
   <script>
+    // Remove intro div after animation completes
+    window.addEventListener('animationend', (e) => {
+      if(e.target.id === 'intro') e.target.style.display = 'none';
+    });
+
+    // PASSWORD LOGIN
+    const correctPassword = "ameen999";
+    function checkPassword() {
+      const input = document.getElementById("passwordInput").value;
+      const errorMsg = document.getElementById("errorMsg");
+      if(input === correctPassword) {
+        document.getElementById("loginOverlay").style.display = "none";
+      } else {
+        errorMsg.style.display = "block";
+      }
+    }
+  </script>
+</body>
+</html>
