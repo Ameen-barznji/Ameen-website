@@ -8,6 +8,7 @@
   <title>Ameen | Personal Website</title>
 
   <style>
+    /* ========== YOUR EXISTING STYLES ========== */
     :root {
       --primary: #7b2ff7;
       --secondary: #f107a3;
@@ -15,277 +16,106 @@
       --shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
+    * { margin:0; padding:0; box-sizing:border-box; scroll-behavior:smooth; }
+    body { font-family:"Poppins","Segoe UI",sans-serif; color:var(--text-light); overflow-x:hidden; min-height:100vh; position:relative; background: linear-gradient(135deg, #20002c, #3a0070); }
 
-    body {
-      font-family: "Poppins", "Segoe UI", sans-serif;
-      color: var(--text-light);
-      overflow-x: hidden;
-      min-height: 100vh;
-      position: relative;
-      background: linear-gradient(135deg, #20002c, #3a0070);
-    }
-
-    /* ========= INTRO ANIMATION ========= */
-    #intro {
+    /* ========== LOGIN OVERLAY ========== */
+    #loginOverlay {
       position: fixed;
-      top:0;
-      left:0;
-      width:100%;
-      height:100%;
-      background: linear-gradient(135deg, #7b2ff7, #f107a3, #ff5858);
+      top:0; left:0;
+      width:100%; height:100%;
+      background: rgba(0,0,0,0.95);
       display:flex;
       justify-content:center;
       align-items:center;
       flex-direction:column;
-      color:#fff;
-      font-size:2.5em;
       z-index:9999;
+      color:#fff;
       text-align:center;
-      animation: introFadeOut 2s forwards 3s;
     }
-
-    #intro h1 {
-      opacity:0;
-      transform: translateY(-50px);
-      animation: introFadeIn 1s forwards 0.5s;
+    #loginOverlay input {
+      padding:10px 15px;
+      font-size:1em;
+      border-radius:5px;
+      border:none;
+      margin-top:10px;
     }
-
-    #intro p {
-      font-size:1.2em;
-      opacity:0;
-      transform: translateY(50px);
-      animation: introFadeIn 1s forwards 1.5s;
-    }
-
-    @keyframes introFadeIn {
-      to {opacity:1; transform: translateY(0);}
-    }
-
-    @keyframes introFadeOut {
-      to {opacity:0; visibility:hidden;}
-    }
-
-    /* ========= NAVBAR ========= */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: rgba(20, 0, 40, 0.8);
-      backdrop-filter: blur(12px);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 18px 50px;
-      z-index: 1000;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    }
-
-    nav h2 {
-      font-weight: 600;
-      font-size: 1.6em;
+    #loginOverlay button {
+      margin-top:10px;
+      padding:10px 20px;
+      font-size:1em;
+      border:none;
+      border-radius:5px;
       background: linear-gradient(90deg, var(--primary), var(--secondary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color:#fff;
+      cursor:pointer;
     }
+    #loginOverlay p { color:red; margin-top:10px; display:none; }
 
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 30px;
-    }
+    /* ========== YOUR EXISTING STYLES CONTINUE ========== */
+    /* INTRO ANIMATION */
+    #intro { position: fixed; top:0; left:0; width:100%; height:100%; background: linear-gradient(135deg, #7b2ff7, #f107a3, #ff5858); display:flex; justify-content:center; align-items:center; flex-direction:column; color:#fff; font-size:2.5em; z-index:999; text-align:center; animation: introFadeOut 2s forwards 3s; }
+    #intro h1 { opacity:0; transform: translateY(-50px); animation: introFadeIn 1s forwards 0.5s; }
+    #intro p { font-size:1.2em; opacity:0; transform: translateY(50px); animation: introFadeIn 1s forwards 1.5s; }
+    @keyframes introFadeIn { to {opacity:1; transform: translateY(0);} }
+    @keyframes introFadeOut { to {opacity:0; visibility:hidden;} }
 
-    nav ul li a {
-      color: #fff;
-      font-weight: 500;
-      transition: color 0.3s ease;
-      text-decoration: none;
-    }
+    /* NAVBAR */
+    nav { position: fixed; top:0; left:0; width:100%; background: rgba(20, 0, 40, 0.8); backdrop-filter: blur(12px); display:flex; justify-content:space-between; align-items:center; padding:18px 50px; z-index:1000; box-shadow:0 4px 15px rgba(0,0,0,0.2); }
+    nav h2 { font-weight:600; font-size:1.6em; background: linear-gradient(90deg, var(--primary), var(--secondary)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    nav ul { list-style:none; display:flex; gap:30px; }
+    nav ul li a { color:#fff; font-weight:500; text-decoration:none; transition:0.3s; }
+    nav ul li a:hover { color: var(--secondary); }
 
-    nav ul li a:hover {
-      color: var(--secondary);
-    }
+    /* ANIMATED BACKGROUND */
+    .animated-bg { position:fixed; top:0; left:0; width:100%; height:100%; z-index:-1; background: radial-gradient(circle at 20% 20%, #7b2ff7, transparent 60%), radial-gradient(circle at 80% 80%, #f107a3, transparent 60%); background-size: 200% 200%; animation: moveBg 10s ease-in-out infinite alternate; }
+    @keyframes moveBg { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
 
-    /* ========= ANIMATED BACKGROUND ========= */
-    .animated-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      background: radial-gradient(circle at 20% 20%, #7b2ff7, transparent 60%),
-                  radial-gradient(circle at 80% 80%, #f107a3, transparent 60%);
-      background-size: 200% 200%;
-      animation: moveBg 10s ease-in-out infinite alternate;
-    }
+    /* HEADER */
+    header { height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:0 20px; }
+    header h1 { font-size:3.5em; letter-spacing:1px; text-shadow:0 0 25px rgba(255,255,255,0.2); animation: fadeInUp 1.3s ease; }
+    header h3 { font-weight:400; margin-top:10px; opacity:0.9; font-size:1.3em; animation: fadeInUp 1.6s ease; }
+    .scroll-down { margin-top:50px; font-size:1.1em; opacity:0.7; animation: bounce 2s infinite; }
+    @keyframes fadeInUp { from { opacity:0; transform: translateY(20px); } to { opacity:1; transform: translateY(0); } }
+    @keyframes bounce { 0%,100% { transform:translateY(0);} 50% {transform:translateY(-8px);} }
 
-    @keyframes moveBg {
-      from { background-position: 0% 50%; }
-      to { background-position: 100% 50%; }
-    }
+    /* SECTIONS */
+    section { width:100%; max-width:1100px; margin:0 auto; padding:100px 30px; }
+    section h2 { font-size:2.4em; margin-bottom:20px; text-align:center; background: linear-gradient(90deg, var(--primary), var(--secondary)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    section p { text-align:center; font-size:1.15em; color:#ddd; line-height:1.8; opacity:0.95; }
 
-    /* ========= HEADER ========= */
-    header {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 0 20px;
-    }
-
-    header h1 {
-      font-size: 3.5em;
-      letter-spacing: 1px;
-      text-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
-      animation: fadeInUp 1.3s ease;
-    }
-
-    header h3 {
-      font-weight: 400;
-      margin-top: 10px;
-      opacity: 0.9;
-      font-size: 1.3em;
-      animation: fadeInUp 1.6s ease;
-    }
-
-    .scroll-down {
-      margin-top: 50px;
-      font-size: 1.1em;
-      opacity: 0.7;
-      animation: bounce 2s infinite;
-    }
-
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
-    }
-
-    /* ========= SECTIONS ========= */
-    section {
-      width: 100%;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 100px 30px;
-    }
-
-    section h2 {
-      font-size: 2.4em;
-      margin-bottom: 20px;
-      text-align: center;
-      background: linear-gradient(90deg, var(--primary), var(--secondary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    section p {
-      text-align: center;
-      font-size: 1.15em;
-      color: #ddd;
-      line-height: 1.8;
-      opacity: 0.95;
-    }
-
-    /* ========= SOCIALS ========= */
-    .social-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-      margin-top: 20px;
-    }
-
-    .social-icon {
-      padding: 14px 20px;
-      border-radius: 6px;
-      color: #fff;
-      font-weight: 600;
-      text-decoration: none;
-      box-shadow: var(--shadow);
-      transition: transform 0.3s, opacity 0.3s;
-    }
-
-    .social-icon:hover {
-      transform: scale(1.08);
-      opacity: 0.9;
-    }
-
-    .facebook { background-color: #3b5998; }
-    .twitter  { background-color: #1da1f2; }
+    /* SOCIALS */
+    .social-buttons { display:flex; flex-wrap:wrap; justify-content:center; gap:15px; margin-top:20px; }
+    .social-icon { padding:14px 20px; border-radius:6px; color:#fff; font-weight:600; text-decoration:none; box-shadow:var(--shadow); transition:transform 0.3s, opacity 0.3s; }
+    .social-icon:hover { transform:scale(1.08); opacity:0.9; }
+    .facebook { background-color:#3b5998; }
+    .twitter { background-color:#1da1f2; }
     .instagram { background: linear-gradient(45deg, #feda75, #d62976, #962fbf); }
-    .tiktok    { background-color: #000; }
-    .youtube   { background-color: #ff0000; }
-    .telegram  { background-color: #0088cc; }
+    .tiktok { background-color:#000; }
+    .youtube { background-color:#ff0000; }
+    .telegram { background-color:#0088cc; }
 
-    /* ========= CONTACT ========= */
-    form {
-      display: flex;
-      flex-direction: column;
-      max-width: 500px;
-      margin: 0 auto;
-      gap: 15px;
-    }
+    /* CONTACT */
+    form { display:flex; flex-direction:column; max-width:500px; margin:0 auto; gap:15px; }
+    input, textarea { padding:12px 16px; border:none; border-radius:6px; font-size:1em; background: rgba(255,255,255,0.1); color:#fff; transition:0.3s; }
+    input:focus, textarea:focus { outline:2px solid var(--primary); background: rgba(255,255,255,0.2); }
+    button { padding:12px; border:none; border-radius:6px; background: linear-gradient(90deg, var(--primary), var(--secondary)); color:#fff; font-weight:bold; cursor:pointer; transition: transform 0.3s ease; }
+    button:hover { transform: scale(1.05); box-shadow: var(--shadow); }
+    footer { text-align:center; padding:25px; color:#bbb; background: rgba(0,0,0,0.2); }
 
-    input, textarea {
-      padding: 12px 16px;
-      border: none;
-      border-radius: 6px;
-      font-size: 1em;
-      background: rgba(255, 255, 255, 0.1);
-      color: #fff;
-      transition: 0.3s;
-    }
-
-    input:focus, textarea:focus {
-      outline: 2px solid var(--primary);
-      background: rgba(255, 255, 255, 0.2);
-    }
-
-    button {
-      padding: 12px;
-      border: none;
-      border-radius: 6px;
-      background: linear-gradient(90deg, var(--primary), var(--secondary));
-      color: #fff;
-      font-weight: bold;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-
-    button:hover {
-      transform: scale(1.05);
-      box-shadow: var(--shadow);
-    }
-
-    footer {
-      text-align: center;
-      padding: 25px;
-      color: #bbb;
-      background: rgba(0, 0, 0, 0.2);
-    }
-
-    @media (max-width: 768px) {
-      nav { padding: 15px 25px; }
-      nav ul { gap: 15px; }
-      header h1 { font-size: 2.4em; }
-    }
+    @media(max-width:768px) { nav { padding:15px 25px; } nav ul { gap:15px; } header h1 { font-size:2.4em; } }
   </style>
 </head>
 
 <body>
+  <!-- LOGIN OVERLAY -->
+  <div id="loginOverlay">
+    <h2>Enter Password</h2>
+    <input type="password" id="passwordInput" placeholder="Password"/>
+    <button onclick="checkPassword()">Enter</button>
+    <p id="errorMsg">Wrong password!</p>
+  </div>
+
   <!-- INTRO ANIMATION -->
   <div id="intro">
     <h1>Hi I'm Ameen</h1>
@@ -320,7 +150,7 @@
       Hi I’m Ameen I study Computer Science at <strong>Zansti Sardam Institute</strong>.
       I’m passionate about technology and enjoy gaming, watching movies and series, 
       and spending time at the gym it helps me stay focused and forget about everything else for a while.
-      I always strive to improve myself learn new skillsand work toward my goals step by step.
+      I always strive to improve myself learn new skills and work toward my goals step by step.
     </p>
   </section>
 
@@ -354,10 +184,3 @@
   </footer>
 
   <script>
-    // Remove intro div after animation completes
-    window.addEventListener('animationend', (e) => {
-      if(e.target.id === 'intro') e.target.style.display = 'none';
-    });
-  </script>
-</body>
-</html>
